@@ -170,7 +170,9 @@ public class Model {
             Tile up_t = this.tile(x, targetY + 1);
             if (up_t != null) {
                 if (up_t.value() != myValue || up_t.wasMerged()) {
-                    this.board.move(x, targetY, currTile);
+                    if (targetY != y) {
+                        this.board.move(x, targetY, currTile);
+                    }
                 } else {
                     this.board.move(x, targetY + 1, currTile);
                 }
@@ -178,7 +180,9 @@ public class Model {
             }
             targetY++;
         }
-        this.board.move(x, targetY, currTile);
+        if (targetY != y) {
+            this.board.move(x, targetY, currTile);
+        }
     }
 
     /** Handles the movements of the tilt in column x of the board
@@ -197,6 +201,9 @@ public class Model {
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        for (int x = this.size() - 1; x >= 0; x--) {
+            this.tiltColumn(x);
+        }
     }
 
     /** Tilts every column of the board toward SIDE.
