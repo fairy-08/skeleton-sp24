@@ -122,6 +122,26 @@ public class Model {
      */
     public boolean atLeastOneMoveExists() {
         // TODO: Fill in this function.
+        if (this.emptySpaceExists()) {
+            return true;
+        }
+        int len = this.size();
+        // 纵向比较
+        for (int y = 0; y < len-1; y++) {
+            for (int x = 0; x < len; x++) {
+                if (this.tile(x, y).value() == this.tile(x, y+1).value()) {
+                    return true;
+                }
+            }
+        }
+        // 横向比较
+        for (int x = 0; x < len-1; x++) {
+            for (int y = 0; y < len; y++) {
+                if (this.tile(x, y).value() == this.tile(x+1, y).value()) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
