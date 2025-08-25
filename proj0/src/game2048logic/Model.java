@@ -175,6 +175,7 @@ public class Model {
                     }
                 } else {
                     this.board.move(x, targetY + 1, currTile);
+                    this.score += myValue * 2;
                 }
                 return;
             }
@@ -201,9 +202,11 @@ public class Model {
 
     public void tilt(Side side) {
         // TODO: Tasks 8 and 9. Fill in this function.
+        this.board.setViewingPerspective(side);
         for (int x = this.size() - 1; x >= 0; x--) {
             this.tiltColumn(x);
         }
+        this.board.setViewingPerspective(Side.NORTH);
     }
 
     /** Tilts every column of the board toward SIDE.
