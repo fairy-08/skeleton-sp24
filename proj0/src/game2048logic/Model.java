@@ -165,6 +165,20 @@ public class Model {
         int targetY = y;
 
         // TODO: Tasks 5, 6, and 10. Fill in this function.
+        int len = this.size();
+        while (targetY < len-1) {
+            Tile up_t = this.tile(x, targetY + 1);
+            if (up_t != null) {
+                if (up_t.value() != myValue) {
+                    this.board.move(x, targetY, currTile);
+                } else {
+                    this.board.move(x, targetY + 1, currTile);
+                }
+                return;
+            }
+            targetY++;
+        }
+        this.board.move(x, targetY, currTile);
     }
 
     /** Handles the movements of the tilt in column x of the board
