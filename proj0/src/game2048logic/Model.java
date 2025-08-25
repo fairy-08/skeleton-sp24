@@ -169,7 +169,7 @@ public class Model {
         while (targetY < len-1) {
             Tile up_t = this.tile(x, targetY + 1);
             if (up_t != null) {
-                if (up_t.value() != myValue) {
+                if (up_t.value() != myValue || up_t.wasMerged()) {
                     this.board.move(x, targetY, currTile);
                 } else {
                     this.board.move(x, targetY + 1, currTile);
