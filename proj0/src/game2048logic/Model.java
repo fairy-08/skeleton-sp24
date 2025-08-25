@@ -188,6 +188,11 @@ public class Model {
      * */
     public void tiltColumn(int x) {
         // TODO: Task 7. Fill in this function.
+        for (int y = this.size() - 1; y >= 0; y--) {
+            if (this.tile(x, y) != null) {
+                this.moveTileUpAsFarAsPossible(x, y);
+            }
+        }
     }
 
     public void tilt(Side side) {
