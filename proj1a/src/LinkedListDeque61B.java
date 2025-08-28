@@ -82,14 +82,30 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T get(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        int i = 0;
+        for (Node flag = sentinel.next; flag != sentinel; flag = flag.next) {
+            if (i == index) {
+                return flag.item;
+            }
+            i++;
+        }
+        return null;
     }
 
     @Override
     public T getRecursive(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRecursive'");
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        return getRecursiveHelper(index, sentinel);
+    }
+
+    private T getRecursiveHelper(int idx, Node temp) {
+        if (idx == 0) {
+            return temp.next.item;
+        } else {
+            return getRecursiveHelper(idx - 1, temp.next);
+        }
     }
 
 }
