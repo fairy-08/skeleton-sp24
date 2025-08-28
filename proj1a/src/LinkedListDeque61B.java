@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.saxon.functions.ConstantFunction.False;
+
 public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     private class Node {
@@ -16,11 +18,14 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     }
 
     private Node sentinel;
+    private int size;
 
     public LinkedListDeque61B() {
         sentinel = new Node(null, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
+
+        size = 0;
     }
 
     @Override
@@ -28,6 +33,8 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         Node xNode = new Node(sentinel, x, sentinel.next);
         sentinel.next.prev = xNode;
         sentinel.next = xNode;
+
+        size++;
     }
 
     @Override
@@ -35,6 +42,8 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         Node xNode = new Node(sentinel.prev, x, sentinel);
         sentinel.prev.next = xNode;
         sentinel.prev = xNode;
+
+        size++;
     }
 
     @Override
@@ -48,14 +57,15 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        if (sentinel.next == sentinel) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return size;
     }
 
     @Override
