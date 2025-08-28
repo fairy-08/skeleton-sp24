@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.saxon.functions.ConstantFunction.False;
-
 public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     private class Node {
@@ -70,14 +68,26 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T removeFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
+        if (size == 0) {
+            return null;
+        }
+        size--;
+        T temp = sentinel.next.item;
+        sentinel.next.next.prev = sentinel;
+        sentinel.next = sentinel.next.next;
+        return temp;
     }
 
     @Override
     public T removeLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
+        if (size == 0) {
+            return null;
+        }
+        size--;
+        T temp = sentinel.prev.item;
+        sentinel.prev.prev.next = sentinel;
+        sentinel.prev = sentinel.prev.prev;
+        return temp;
     }
 
     @Override
