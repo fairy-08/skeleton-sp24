@@ -16,8 +16,21 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         rear = 0;
     }
 
+    private void expansion() {
+        T[] newItems = (T[]) new Object[items.length * 2];
+        for (int i = 0; i < size; i++) {
+            newItems[i] = get(i);
+        }
+        front = 0;
+        rear = size;
+        items = newItems;
+    }
+
     @Override
     public void addFirst(T x) {
+        if (size == items.length) {
+            expansion();
+        }
         front = Math.floorMod(front - 1, items.length);
         items[front] = x;
         size++;
@@ -25,8 +38,11 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public void addLast(T x) {
+        if (size == items.length) {
+            expansion();
+        }
         items[rear] = x;
-        rear = rear + 1;  // rear = Math.floorMod(rear + 1; items.length);
+        rear = Math.floorMod(rear + 1, items.length);
         size++;
     }
 

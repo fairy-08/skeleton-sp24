@@ -30,8 +30,8 @@ public class ArrayDeque61BTest {
         assertThat(lst.toList()).containsExactly(0, 1, 2, 3, 4, 5, 6, 7).inOrder();
 
         // 扩容
-        // lst.addFirst(8);
-        // assertThat(lst.toList()).containsExactly(8, 0, 1, 2, 3, 4, 5, 6, 7).inOrder();
+        lst.addFirst(8);
+        assertThat(lst.toList()).containsExactly(8, 0, 1, 2, 3, 4, 5, 6, 7).inOrder();
     }
 
     @Test
@@ -44,8 +44,8 @@ public class ArrayDeque61BTest {
         assertThat(lst.toList()).containsExactly(0, 1, 2, 3, 4, 5, 6, 7).inOrder();
 
         // 扩容
-        // lst.addLast(8);
-        // assertThat(lst.toList()).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8).inOrder();
+        lst.addLast(8);
+        assertThat(lst.toList()).containsExactly(0, 1, 2, 3, 4, 5, 6, 7, 8).inOrder();
     }
 
     @Test
@@ -84,6 +84,11 @@ public class ArrayDeque61BTest {
         assertThat(lst.get(50)).isEqualTo(null);
 
         // 扩容
+        lst.addFirst(-1);
+        lst.addFirst(-1);
+        lst.addFirst(-1);
+        lst.addLast(99);
+        assertThat(lst.get(8)).isEqualTo(99);
     }
 
     @Test
