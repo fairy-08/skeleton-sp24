@@ -57,10 +57,7 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public boolean isEmpty() {
-        if (size == 0) {
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     @Override
