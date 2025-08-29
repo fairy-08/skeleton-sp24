@@ -86,4 +86,25 @@ public class ArrayDeque61BTest {
         // 扩容
     }
 
+    @Test
+    public void removeFirstAndremoveLastTest() {
+        Deque61B<Integer> lst = new ArrayDeque61B<>();
+
+        lst.addLast(0);   // [0]
+        lst.addLast(1);   // [0, 1]
+        lst.addFirst(-1); // [-1, 0, 1]
+        lst.addLast(2);   // [-1, 0, 1, 2]
+        lst.addFirst(-2); // [-2, -1, 0, 1, 2]
+
+        lst.removeFirst();
+        assertThat(lst.toList()).containsExactly(-1, 0, 1, 2).inOrder();
+        lst.removeLast();
+        assertThat(lst.toList()).containsExactly(-1, 0, 1).inOrder();
+        assertThat(lst.removeFirst()).isEqualTo(-1);
+        assertThat(lst.removeLast()).isEqualTo(1);
+        lst.removeFirst();
+        assertThat(lst.removeFirst()).isEqualTo(null);
+        assertThat(lst.removeLast()).isEqualTo(null);
+    }
+
 }

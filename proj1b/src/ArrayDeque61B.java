@@ -54,14 +54,26 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T removeFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
+        if (isEmpty()) {
+            return null;
+        }
+        T removed = items[front];
+        items[front] = null;
+        front = Math.floorMod(front + 1, items.length);
+        size--;
+        return removed;
     }
 
     @Override
     public T removeLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
+        if (isEmpty()) {
+            return null;
+        }
+        rear = Math.floorMod(rear - 1, items.length);
+        T removed = items[rear];
+        items[rear] = null;
+        size--;
+        return removed;
     }
 
     @Override
@@ -75,8 +87,7 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T getRecursive(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRecursive'");
+        throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
     }
 
 }
