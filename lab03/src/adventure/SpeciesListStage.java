@@ -11,12 +11,12 @@ public class SpeciesListStage implements AdventureStage {
 
     // Honestly I just find O'Reilly's animals to be really cool
     private static final List<String> REFERENCE_1 = List.of(
-            "leopards",     // Reactive Systems in Java
-            "bison"         // Java EXTREME Programming Cookbook
+            "l",     // Reactive Systems in Java leopards
+            "b"         // Java EXTREME Programming Cookbook bison
     );
     private static final List<String> REFERENCE_2 = List.of(
-            "squirrels",    // Java: The Good Parts
-            "hummingbirds"  // Better, Faster, Lighter Java
+            "s",    // Java: The Good Parts squirrels
+            "h"  // Better, Faster, Lighter Java hummingbirds
     );
     private static final List<String> REFERENCE_3 = new ArrayList<>();
 
@@ -98,6 +98,9 @@ public class SpeciesListStage implements AdventureStage {
                 similarObjects++;
                 copy.remove(o);
             }
+        }
+        if (listOne.size() == 0) {
+            return 1;
         }
         return similarObjects / listOne.size();
     }
